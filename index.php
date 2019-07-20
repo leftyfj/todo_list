@@ -19,7 +19,7 @@
 require_once 'config/config.php';
 $db = getDb();
 
-$sql = "SELECT*FROM todos";
+$sql = "SELECT*FROM todos ORDER BY deadline";
 $stmt = $db->query($sql);
 ?>
 <!DOCTYPE html>
