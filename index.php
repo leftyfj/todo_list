@@ -27,23 +27,34 @@ $stmt = $db->query($sql);
   <head>
     <meta charset="utf-8">
     <title>Todo List</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        font-size: 16px;
+      }
+      tr {
+        border-color: gray;
+        border-style: solid;
+        border-width: 1px 0;
+      }
+    </style>
   </head>
   <body>
 
 
 <h1 style="font-size:20px">TODO 一覧</h1>
-<table border="2" width="80%" align="center">
+<table width="80%" align="center">
   <th bgcolor="#f0f8ff">id</th>
   <!-- <th bgcolor="#f0f8ff">use_id</th> -->
-  <th bgcolor="#f0f8ff">TODO</th>
-  <th bgcolor="#f0f8ff">メモ</th>
-  <th bgcolor="#f0f8ff">優先度</th>
-  <th bgcolor="#f0f8ff">開始日</th>
-  <th bgcolor="#f0f8ff">期限</th>
-  <th bgcolor="#f0f8ff">完了日</th>
-  <th bgcolor="#f0f8ff">プロジェクト</th>
-  <th bgcolor="#f0f8ff">ジャンル</th>
-  <th bgcolor="#f0f8ff">タブ</th>
+  <th align="left" bgcolor="#f0f8ff">TODO</th>
+  <th align="left" bgcolor="#f0f8ff">メモ</th>
+  <th align="center" bgcolor="#f0f8ff">優先度</th>
+  <th align="center" bgcolor="#f0f8ff">開始日</th>
+  <th align="center" bgcolor="#f0f8ff">期限</th>
+  <th align="center" bgcolor="#f0f8ff">完了日</th>
+  <th align="left" bgcolor="#f0f8ff">プロジェクト</th>
+  <th align="left" bgcolor="#f0f8ff">ジャンル</th>
+  <th align="left" bgcolor="#f0f8ff">タブ</th>
   </tr>
 <?php
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -55,7 +66,7 @@ $stmt = $db->query($sql);
     echo "<td>".$row['memo']."</td>";
     echo "<td>".$row['priority']."</td>";
     echo "<td>".$row['start']."</td>";
-    echo "<td>".$row['deadline']."</td>";
+    echo "<td align='center'>".$row['deadline']."</td>";
     echo "<td>".$row['completed']."</td>";
     echo "<td>".$row['project_id']."</td>";
     echo "<td>".$row['genre_id']."</td>";
