@@ -1,69 +1,28 @@
 <?php
-//PHPでDBのtodosテーブルからリストを取得
-// $dsn = 'mysql:host=localhost;dbname=todo;charset=utf8';
-// $user = 'root';
-// $password = 'hisa59';
-//
-// try {
-//   $db = new PDO($dsn, $user, $password);
-//   //echo('接続に成功しました').PHP_EOL;
-//
-//   //$stmt = $db->prepare('SELECT * FROM todos');
-//   $sql = "SELECT*FROM todos";
-//   $stmt = $db->query($sql);
-//
-// } catch (PDOException $e) {
-//   die("接続できませんでした:{$e->getMessage()}");
-// }
 
-require_once 'config/config.php';
-$db = getDb();
+require_once 'model/todo.php';
+// $db = getDb();
+//
+// $sql = "SELECT*FROM todos ORDER BY deadline";
+// $stmt = $db->query($sql);
+// $todos = $stmt->fetch(PDO::FETCH_ASSOC);
+$todo = new Todo;
+$todo_list = $todo->getAll();
 
-$sql = "SELECT*FROM todos ORDER BY deadline";
-$stmt = $db->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8">
     <title>Todo List</title>
-    <style>
-      body {
-        background-image: url(images/bg_content.png);
-        /* 画像を常に天地左右の中央に配置 */
-        background-position: center center;
-
-        /* 画像をタイル状に繰り返し表示しない */
-        background-repeat: no-repeat;
-
-        /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
-        background-attachment: fixed;
-
-        /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
-        background-size: cover;
-
-        /* 背景画像が読み込まれる前に表示される背景のカラー */
-        background-color: #464646;
-      }
-      h1 {font-size:20px;}
-      table {
-        border-collapse: collapse;
-        font-size: 16px;
-      }
-      tr {
-        border-color: gray;
-        border-style: solid;
-        border-width: 1px 0;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
 
 
-<h1 style="font-size:20px">TODO 一覧</h1>
+<h1>TODO 一覧</h1>
 <table width="80%" align="center">
   <th bgcolor="#f0f8ff">id</th>
-  <!-- <th bgcolor="#f0f8ff">use_id</th> -->
   <th align="left" bgcolor="#f0f8ff">TODO</th>
   <th align="left" bgcolor="#f0f8ff">メモ</th>
   <th align="center" bgcolor="#f0f8ff">優先度</th>
@@ -74,24 +33,39 @@ $stmt = $db->query($sql);
   <th align="left" bgcolor="#f0f8ff">ジャンル</th>
   <th align="left" bgcolor="#f0f8ff">タブ</th>
   </tr>
-<?php
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-    echo "<tr>";
-    echo "<td>".$row['id']."</td>";
-    // echo "<td>".$row['user_id']."</td>";
-    echo "<td>".$row['title']."</td>";
-    echo "<td>".$row['memo']."</td>";
-    echo "<td>".$row['priority']."</td>";
-    echo "<td>".$row['start']."</td>";
-    echo "<td align='center'>".$row['deadline']."</td>";
-    echo "<td>".$row['completed']."</td>";
-    echo "<td>".$row['project_id']."</td>";
-    echo "<td>".$row['genre_id']."</td>";
-    echo "<td>".$row['tag_id']."</td>";
-    echo "</tr>";
-  //  echo "</table>"
-  }
+<?php foreach ($todo_list as $todo):?>
+<tr>
+  <td><?php echo $todo['id'];?></td>
+  <td><?php echo $todo['user_id'];?></td>
+  <td><?php echo $todo['title'];?></td>
+  <td><?php echo $todo['memo'];?></td>
+  <td><?php echo $todo['priority'];?></td>
+  <td><?php echo $todo['start'];?></td>
+  <td><?php echo $todo['deadline'];?></td>
+  <td><?php echo $todo['completed'];?></td>
+  <td><?php echo $todo['project_id'];?></td>
+  <td><?php echo $todo['genre_id'];?></td>
+  <td><?php echo $todo['tag_id'];?></td>
+</tr>
+<?php endforeach;?>
+</table>
+  <!-- // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  //
+  //   echo "<tr>";
+  //   echo "<td>".$row['id']."</td>";
+  //   // echo "<td>".$row['user_id']."</td>";
+  //   echo "<td>".$row['title']."</td>";
+  //   echo "<td>".$row['memo']."</td>";
+  //   echo "<td>".$row['priority']."</td>";
+  //   echo "<td>".$row['start']."</td>";
+  //   echo "<td align='center'>".$row['deadline']."</td>";
+  //   echo "<td>".$row['completed']."</td>";
+  //   echo "<td>".$row['project_id']."</td>";
+  //   echo "<td>".$row['genre_id']."</td>";
+  //   echo "<td>".$row['tag_id']."</td>";
+  //   echo "</tr>";
+  // //  echo "</table>"
+  // } -->
 
   unset($db);
  ?>
