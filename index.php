@@ -1,6 +1,8 @@
 <?php
 
 require_once 'model/todo.php';
+
+var_dump('aaa');exit;
 // $db = getDb();
 //
 // $sql = "SELECT*FROM todos ORDER BY deadline";
