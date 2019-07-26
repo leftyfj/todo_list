@@ -1,8 +1,9 @@
 <?php
 
+require_once './config/config.php';
 require_once 'model/todo.php';
 
-var_dump('aaa');exit;
+//var_dump('aaa');exit;
 // $db = getDb();
 //
 // $sql = "SELECT*FROM todos ORDER BY deadline";
@@ -10,14 +11,15 @@ var_dump('aaa');exit;
 // $todos = $stmt->fetch(PDO::FETCH_ASSOC);
 $todo = new Todo;
 $todo_list = $todo->getAll();
-
+$cnt =count($todo_list);
+echo $cnt; exit;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8">
     <title>Todo List</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
   </head>
   <body>
 
@@ -36,19 +38,12 @@ $todo_list = $todo->getAll();
   <th align="left" bgcolor="#f0f8ff">タブ</th>
   </tr>
 <?php foreach ($todo_list as $todo):?>
-<tr>
+<!-- <tr>
   <td><?php echo $todo['id'];?></td>
   <td><?php echo $todo['user_id'];?></td>
   <td><?php echo $todo['title'];?></td>
-  <td><?php echo $todo['memo'];?></td>
-  <td><?php echo $todo['priority'];?></td>
-  <td><?php echo $todo['start'];?></td>
-  <td><?php echo $todo['deadline'];?></td>
-  <td><?php echo $todo['completed'];?></td>
-  <td><?php echo $todo['project_id'];?></td>
-  <td><?php echo $todo['genre_id'];?></td>
-  <td><?php echo $todo['tag_id'];?></td>
-</tr>
+
+</tr> -->
 <?php endforeach;?>
 </table>
   <!-- // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
