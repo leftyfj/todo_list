@@ -19,7 +19,6 @@
       //var_dump($dsn);exit;
       try{
         $this->$db = new PDO($dsn, DB_USER, DB_PASSWD);
-        echo('接続できました');
         count($this);
         } catch (PDOException $e) {
         die("接続できませんでした:{$e->getMessage()}");
@@ -30,7 +29,8 @@
     public function getAll(){
       $sql = "SELECT * FROM todos ORDER BY deadline";
       $stmt = $this->$db->query($sql);
-      return $stmt->fetch(PDO::FETCH_ASSOC);
+      //return $stmt->fetch(PDO::FETCH_ASSOC);
+      return $stmt;
     }
   }
 
