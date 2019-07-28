@@ -5,17 +5,14 @@ require_once 'model/todo.php';
 
 $todo = new Todo;
 
-//$stmt = $todo->$db->query("SELECT * FROM todos ORDER BY deadline");
-$stmt = $todo->getAll();
-//$stmt->execute();
-//var_dump('aaa');exit;
 
-//
-// $sql = "SELECT*FROM todos ORDER BY deadline";
-// $stmt = $db->query($sql);
-// $todos = $stmt->fetch(PDO::FETCH_ASSOC);
+$todo_list = $todo->getAll();
 
-// $todo_list = $todo->getAll();
+// foreach ($todo_list as $value) {
+//   echo $value['id'].PHP_EOL;
+//   echo $value['title'];
+// };
+// echo "終わります。";exit;
 // $cnt =count($todo_list);
 // echo $cnt; exit;
 ?>
@@ -43,8 +40,9 @@ $stmt = $todo->getAll();
     <th align="left" bgcolor="#f0f8ff">ジャンル</th>
     <th align="left" bgcolor="#f0f8ff">タブ</th>
   </tr>
-  <?php while($todo = $stmt->fetch(PDO::FETCH_ASSOC)):?>
-  <tr>
+  <?php /*while($todo = $stmt->fetch(PDO::FETCH_ASSOC)):*/?>
+  <?php foreach ($todo_list as $todo):?>
+  <!-- <tr> -->
     <td><?php echo $todo['id'];?></td>
     <td><?php echo $todo['title'];?></td>
     <td><?php echo $todo['memo'];?></td>
@@ -55,7 +53,9 @@ $stmt = $todo->getAll();
     <td><?php echo $todo['genre_id'];?></td>
     <td><?php echo $todo['tag_id'];?></td>
   </tr>
-<?php endwhile;?>
+
+<?php endforeach;?>
+
   </table>
  <?php //foreach ($todo_list as $todo):
    /*while($todo = $stmt->fetch(PDO::FETCH_ASSOC)){
