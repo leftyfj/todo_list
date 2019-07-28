@@ -5,87 +5,38 @@ require_once 'model/todo.php';
 
 $todo = new Todo;
 
-
 $todo_list = $todo->getAll();
 
-// foreach ($todo_list as $value) {
-//   echo $value['id'].PHP_EOL;
-//   echo $value['title'];
-// };
-// echo "終わります。";exit;
-// $cnt =count($todo_list);
-// echo $cnt; exit;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8">
     <title>Todo List</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-
-
-<h1>TODO 一覧</h1>
-<table width="80%" align="center">
-  <tr>
-    <th bgcolor="#f0f8ff">id</th>
-    <th align="left" bgcolor="#f0f8ff">TODO</th>
-    <th align="left" bgcolor="#f0f8ff">メモ</th>
-    <th align="center" bgcolor="#f0f8ff">優先度</th>
-    <th align="center" bgcolor="#f0f8ff">開始日</th>
-    <th align="center" bgcolor="#f0f8ff">期限</th>
-    <th align="center" bgcolor="#f0f8ff">完了日</th>
-    <th align="left" bgcolor="#f0f8ff">プロジェクト</th>
-    <th align="left" bgcolor="#f0f8ff">ジャンル</th>
-    <th align="left" bgcolor="#f0f8ff">タブ</th>
-  </tr>
-  <?php /*while($todo = $stmt->fetch(PDO::FETCH_ASSOC)):*/?>
-  <?php foreach ($todo_list as $todo):?>
-  <!-- <tr> -->
-    <td><?php echo $todo['id'];?></td>
-    <td><?php echo $todo['title'];?></td>
-    <td><?php echo $todo['memo'];?></td>
-    <td><?php echo $todo['priority'];?></td>
-    <td><?php echo $todo['start'];?></td>
-    <td><?php echo $todo['deadline'];?></td>
-    <td><?php echo $todo['project_id'];?></td>
-    <td><?php echo $todo['genre_id'];?></td>
-    <td><?php echo $todo['tag_id'];?></td>
-  </tr>
-
-<?php endforeach;?>
-
-  </table>
- <?php //foreach ($todo_list as $todo):
-   /*while($todo = $stmt->fetch(PDO::FETCH_ASSOC)){
-     echo"<hr>{$todo['id']}:{$todo['title']}:{$todo['deadline']}";
-   }
-
-*/
-?>
-
-
-  <!-- // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  //
-  //   echo "<tr>";
-  //   echo "<td>".$row['id']."</td>";
-  //   // echo "<td>".$row['user_id']."</td>";
-  //   echo "<td>".$row['title']."</td>";
-  //   echo "<td>".$row['memo']."</td>";
-  //   echo "<td>".$row['priority']."</td>";
-  //   echo "<td>".$row['start']."</td>";
-  //   echo "<td align='center'>".$row['deadline']."</td>";
-  //   echo "<td>".$row['completed']."</td>";
-  //   echo "<td>".$row['project_id']."</td>";
-  //   echo "<td>".$row['genre_id']."</td>";
-  //   echo "<td>".$row['tag_id']."</td>";
-  //   echo "</tr>";
-  // //  echo "</table>"
-  // } -->
-<?
-  unset($db);
- ?>
-
+    <main>
+      <h1>TODO 一覧</h1>
+      <article>
+          <hr />
+          <?php foreach ($todo_list as $todo):?>
+            <p class="title">
+              <input type="checkbox" name="todo">
+              <?php print($todo['title']);?>
+            </p>
+            <p class="memo"><?php if (!is_null($todo['memo'])){
+            print("メモ：".$todo['memo']);
+            }?></p>
+            <p class="items"><?php print('期日:'.$todo['deadline']);?>
+              <?php print('ジャンル:'.$todo['genre_id']);?>
+            </p>
+            <hr>
+          <?php endforeach;?>
+      </article>
+  <?php
+    unset($db);
+   ?>
+    </main>
   </body>
 </html>
