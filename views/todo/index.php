@@ -1,7 +1,7 @@
 <?php
 
-require_once './config/config.php';
-require_once 'model/todo.php';
+require_once './../../config/config.php';
+require_once './../../model/todo.php';
 
 $todo = new Todo;
 
@@ -12,8 +12,8 @@ $todo_list = $todo->getAll();
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>Todo List</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Todo List | Todo一覧</title>
+    <link rel="stylesheet" type="text/css" href="./../../css/style.css">
   </head>
   <body>
     <main>
