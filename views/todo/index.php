@@ -37,6 +37,7 @@ $todo_list = $todo->getAll();
   <?php
     unset($db);
    ?>
+      <a href="./new.php">タスク新規登録</a>
     </main>
   </body>
 </html>

@@ -1,33 +1,32 @@
-<?php
-require_once './../../config/config.php';
-require_once './../../model/todo.php';
-
-
-$todo = new Todo;
-
-$stmt = $todo->$db->prepare("INSERT INTO `todos` (`user_id`,`title`, `memo`, `priority`, `start`, `deadline`) VALUES (1000,:title, :memo, :priority, :start, :deadline)");
-$stmt->bindValue(':title', $_POST["title"]);
-$stmt->bindValue(':memo', $_POST["memo"]);
-$stmt->bindValue(':priority', $_POST["priory"]);
-$stmt->bindValue(':start', $_POST["start"]);
-$stmt->bindValue(':deadline', $_POST["deadline"]);
-// $stmt->bindValue(':project', $_POST["project"]);
-// $stmt->bindValue(':genre', $_POST["genre"]);
-// $stmt->bindValue(':tag', $_POST["tag"]);
-$flag = $stmt->execute();
-
-unset($db);
-
-?>
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-    <title>登録完了</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
+    <title>Todo List | Todo新規入力</title>
+      <link rel="stylesheet" type="text/css" href="./../../css/style.css">
   </head>
-
-<body>
-    <p>ユーザー登録できました</p>
-</body>
-<a href="new.html">タスク登録へ戻る</a>
+  <body>
+    <main>
+      <h1>新しいタスクを入力してください</h1>
+      <form action="./complete.php" method="post" name="todos">
+        <input type="hidden" name="type" value="new" />
+        <p><input type="text" name="title" placeholder="タイトル"/></p>
+        <p><input type="text" name="memo" placeholder="メモ"/></p>
+        <p>優先度
+          <input type="radio" name="priority" value="１">１（最重要)
+          <input type="radio" name="priority" value="2">２
+          <input type="radio" name="priority" value="3">３
+        </p>
+        <p><input type="text" name="start" placeholder="開始  2019/01/01"/></p>
+        <p><input type="text" name="deadline" placeholder="期限  2019/12/31"/></p>
+        <p><input type="text" name="project" placeholder="プロジェクト"/></p>
+        <p><input type="text" name="genre" placeholder="ジャンル"/></p>
+        <p><input type="text" name="tag" placeholder="#タグ1,#タグ2,#タグ3"/></p>
+        <p><input type="submit" value="登録" /></p>
+      </form>
+      <?php
+        unset($db);
+       ?>
+    </main>
+  </body>
 </html>

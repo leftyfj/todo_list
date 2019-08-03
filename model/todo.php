@@ -18,7 +18,25 @@
       $sql = "SELECT * FROM todos ORDER BY deadline";
       $stmt = $this->$db->query($sql);
       return $stmt->fetchall(PDO::FETCH_ASSOC);
-      //return $stmt;
+
+    }
+
+    public function regist($data) {
+      //DB保存
+      $stmt = $this->$db->prepare("INSERT INTO `todos`
+      (`user_id`,`title`, `memo`, `priority`, `start`, `deadline`)
+      VALUES (1000,:title, :memo, :priority, :start, :deadline)");
+
+      $stmt->bindValue(':title', $data["title"]);
+      $stmt->bindValue(':memo', $data["memo"]);
+      $stmt->bindValue(':priority', $data["priory"]);
+      $stmt->bindValue(':start', $data["start"]);
+      $stmt->bindValue(':deadline', $data["deadline"]);
+      // $stmt->bindValue(':project', $data["project"]);
+      // $stmt->bindValue(':genre', $data["genre"]);
+      // $stmt->bindValue(':tag', $data["tag"]);
+      $flag = $stmt->execute();
+
     }
   }
 
