@@ -29,7 +29,10 @@ if(isset($type) && $type = 'new'){
   </head>
 
 <body>
-    <p>ユーザー登録できました</p>
+  <div class="alert alert-success">
+    ユーザー登録完了しました。
+  </div>
+
 </body>
 <a href="new.php">タスク登録へ戻る</a>
 </html>

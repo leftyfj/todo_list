@@ -2,17 +2,47 @@
   <head>
     <title>新規ユーザー登録</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-  </head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
-  <body>
-    <form action="register.php" method="post">
-      <h1>新規ユーザー登録</h1>
-      <table>
-        <tr><td>ユーザーネーム&nbsp</td><td><input size="40" type="text" name="username" placeholder="全て英文小文字、数字で 例:abcd123"/></td></tr>
-        <tr><td>パスワード&nbsp</td><td><input size="40" type="text" name="user_password" placeholder="全て英文小文字、数字で8文字以内 例:xyzd2345" /></td></tr>
-      </table>
-      <input type="submit" value="確認" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./../../css/style2.css">
+  </head>
+  <body id="main">
+    <div class="container">
+      <header>
+        <h1>新規ユーザー登録</h1>
+      </header>
+    </div> <!--container-->
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+            <p><a href="#">ログイン</a></p>
+        </div> <!--col-md-2-->
+        <div class="col-md-10 ">
+    <form action="register.php" method="post" class="panel panel-default panel-body">
+        <div class="from-group">
+          <label name="username">ユーザーネーム&nbsp</label>
+          <input class="form-control" type="text" name="username" placeholder="全て英文小文字、数字で 例:abcd123"/>
+        </div>
+        <div class="form-group">
+          <label name="user_password">パスワード&nbsp</label>
+          <input class="form-control" type="text" name="user_password" placeholder="全て英文小文字、数字で8文字以内 例:xyzd2345" />
+        </div>
+        <div class="form-group">
+          <input type="submit" value="確認" class="btn btn-primary btn-block" />
+        </div>
+
     </form>
+  </div> <!--col-md-10-->
+    </div> <!--row-->
+  </div><!--container-->
+  <hr />
+
   </body>
 </html>
